@@ -1,0 +1,164 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --main-bg-primary: rgb(226, 52, 52);
+    --main-bg-secondary: rgb(178, 32, 32);
+    --main-bg-third: rgb(114, 13, 13);
+}
+html{
+    width: 100vw;
+    height: 100vh;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 186, 186);
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+}
+
+
+header{
+    display: flex;
+    text-align: center;
+    background-color: var(--main-bg-primary);
+    height: 8%;
+    border-bottom: 5px var(--main-bg-secondary) solid;
+    padding: 10px;
+}
+
+header h1{
+    margin-right: 10px;
+    color: white;
+    /* color: var(--main-bg-third) */
+    /* text-shadow: 1px 0px black, -1px 0px black, 0px 1px black, 0px -1px black; */
+    /* text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000; */
+}
+
+ul li a{
+    color: var(--main-bg-third);
+    border-left: 2px white solid;
+    padding: 15px;
+    display:flex;
+    justify-content: space-around;
+}
+
+ul li a:hover{
+    background-color: var(--main-bg-third);
+    color: white;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 90%;
+    background-color: grey;
+}
+
+main div{
+    width: 80%;
+    height: 95%;
+    background-color: white;
+    border-radius: 2%;
+    border: 1px solid black;
+    box-shadow: 4px 4px rgb(72, 72, 72);
+    padding: 10px 15px;
+}
+
+footer{
+    display: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    height: 2%;
+    background-color: var(--main-bg-secondary);
+}
+
+#footerNav{
+    display: fixed;
+    bottom: 0;
+
+}
+
+/* Manipulated ID's "modal" */
+
+#mainpage{
+    /* display: none; */
+}
+
+#questionpage{
+    display: none;
+}
+
+#resultpage{
+    display: none;
+}
+
+/* #footerNav{
+    display: none;
+} */
+
+/* 600 mobile
+768 table
+lap 992
+larg 1200 */
+
+@media only screen and (min-width: 600px){
+    body{
+        background-color: green;
+    }
+}
+
+/* @media only screen and (min-width: 768px){
+    body{
+        background-color: red;
+    }
+}
+
+@media only screen and (min-width: 992px){
+    body{
+        background-color: purple;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    body{
+        background-color: yellow;
+    }
+} */
