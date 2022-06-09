@@ -34,6 +34,7 @@ header{
     height: 8%;
     border-bottom: 5px var(--main-bg-secondary) solid;
     padding: 10px;
+    box-shadow: 10px 10px 10px yellow;
 }
 
 header h1{
@@ -94,7 +95,7 @@ main div{
     width: 80%;
     height: 95%;
     background-color: white;
-    border-radius: 2%;
+    border-radius: 5px;
     border: 1px solid black;
     box-shadow: 4px 4px rgb(72, 72, 72);
     padding: 10px 15px;
@@ -108,6 +109,7 @@ footer{
     left: 0;
     height: 2%;
     background-color: var(--main-bg-secondary);
+    box-shadow: -2px -2px 5px rgb(74, 74, 74);
 }
 
 #footerNav{
@@ -119,7 +121,7 @@ footer{
 /* Manipulated ID's "modal" */
 
 #mainpage{
-    /* display: none; */
+    display: block;
 }
 
 #questionpage{
@@ -130,9 +132,7 @@ footer{
     display: none;
 }
 
-/* #footerNav{
-    display: none;
-} */
+/* MEDIA SCALING */
 
 /* 600 mobile
 768 table
