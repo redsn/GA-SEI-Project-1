@@ -32,9 +32,253 @@ const pokeNatureBase = {
 
 let pokeNature = {}
 
+/////////////
+//Functions//
+/////////////
+
+//Functions for adding values//
+const attack = () => {
+    pokeNature.hardy += 1;
+    pokeNature.lonely += 1;
+    pokeNature.adamant += 1;
+    pokeNature.naughty += 1;
+    pokeNature.brave += 1;
+}
+
+const defense = () => {
+    pokeNature.bold += 1;
+    pokeNature.docile += 1;
+    pokeNature.impish += 1;
+    pokeNature.lax += 1;
+    pokeNature.relaxed += 1;
+}
+
+const spAttack = () => {
+    pokeNature.modest += 1;
+    pokeNature.mild += 1;
+    pokeNature.bashful += 1;
+    pokeNature.rash += 1;
+    pokeNature.quiet += 1;
+}
+
+const spDefense = () => {
+    pokeNature.calm += 1;
+    pokeNature.gentle += 1;
+    pokeNature.careful += 1;
+    pokeNature.quirky += 1;
+    pokeNature.sassy += 1;
+}
+
+const speed = () => {
+    pokeNature.timid += 1;
+    pokeNature.hasty += 1;
+    pokeNature.jolly += 1;
+    pokeNature.naive += 1;
+    pokeNature.serious += 1;
+}
+
+
+
+///////////////////
+//Question/Answer//
+///////////////////
+
+// result: function (ansNum) {
+//     if (ansNum = 1){
+
+//     }
+//     if (ansNum = 2){
+
+//     }
+//     if (ansNum = 3){
+
+//     }
+//     if (ansNum = 4){
+        
+//     }
+// }
+
+const mainQuestion = 
+    [{
+        question: "How many cats do you own?",
+        answer1: "One",
+        answer2: "Two",
+        answer3: "Four",
+        answer4: "I don't have any cats",
+        result: function (ansNum) {
+            if (ansNum = 1){
+                attack();
+                pokeNature.docile += 2;
+                pokeNature.quiet += 2;
+            }
+            if (ansNum = 2){
+                defense();
+                pokeNature.docile += 2;
+                pokeNature.impish += 2;
+                pokeNature.lax += 2;
+            }
+            if (ansNum = 3){
+                spAttack();
+                pokeNature.modest += 2;
+                pokeNature.bashful += 2;
+                pokeNature.rash += 2;
+            }
+            if (ansNum = 4){
+                spDefense();
+                speed();
+            }
+        }
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: "",
+        result: function (ansNum) {
+            if (ansNum = 1){
+
+            }
+            if (ansNum = 2){
+
+            }
+            if (ansNum = 3){
+
+            }
+            if (ansNum = 4){
+                
+            }
+        }
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    },
+    {
+        question: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: ""
+    }
+]
+
+
+console.log(mainQuestion[0].question);
+
 ///////
 //DOM//
 ///////
+
+///DOM Functions///
+
+const questionGen = () => {
+    ans1.innerHTML = mainQuestion[0].answer1;
+    ans2.innerHTML = mainQuestion[0].answer2;
+    ans3.innerHTML = mainQuestion[0].answer3;
+    ans4.innerHTML = mainQuestion[0].answer4;
+}
 
 ////DOM Declarations////
 
@@ -43,10 +287,11 @@ let pokeNature = {}
 const firstName = document.getElementById('fname');
 const birthDay = document.getElementById('birthday');
 
-//DOM Declarations//
+//DOM Pages//
 
 const frontpage = document.getElementById('mainpage');
-const mainContent = document.getElementById('questionpage')
+const mainContent = document.getElementById('questionpage');
+const resultPage = document.getElementById('resultpage');
 
 //DOM Buttons//
 
@@ -61,9 +306,9 @@ const ans4 = document.getElementById('answer4');
 
 startButton.addEventListener('click', () => {
     pokeNature = pokeNatureBase;
+    questionGen();
     frontpage.style.display = 'none';
     mainContent.style.display = 'block';
-
 })
 
 
