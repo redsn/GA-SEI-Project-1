@@ -57,6 +57,8 @@ let availChoices = [];
 
 let actualVal = 0;
 
+let turn = 1;
+
 /////////////
 //Functions//
 /////////////
@@ -71,6 +73,13 @@ const questionRng = () => {
     let questionVal = Math.floor(Math.random() * availChoices.length);
     actualVal = availChoices[questionVal];
     availChoices.splice(questionVal, 1);
+}
+
+const endCheck = () => {
+    if (turn >= 11){
+        mainContent.style.display = 'none';
+        resultPage.style.display = 'block';
+    }
 }
 
 //Functions for adding values//
@@ -227,15 +236,39 @@ const mainQuestion =
         answer3: "Move it to your neighbor's door",
         answer4: "Donate it to your local shelter",
         answer5: "Get inspired and order 5 apple pies from McDonalds"
+    },
+    {
+        question: "One of the following is now apart of reality. You choose:",
+        answer1: "The Dragonballs",
+        answer2: "Hogwarts",
+        answer3: "The World 2.0",
+        answer4: "San Andreas",
+        answer5: "The Force"
+    },
+    {
+        question: "Which of the following would you want to try.",
+        answer1: "A treestar",
+        answer2: "Scooby Snacks",
+        answer3: "Soylent Green",
+        answer4: "Chef's Chocolate Salty Balls",
+        answer5: "Lembas"
+    },
+    {
+        question: "A mythical creature is impressed by you and offers one of the following as a companion.",
+        answer1: "A Red Dragon",
+        answer2: "A Space Lizard",
+        answer3: "A Hydra",
+        answer4: "A Chimera",
+        answer5: "A Griffin"
+    },
+    {
+        question: "You wake from a horrid nightmare to see ___ above you. It was: ",
+        answer1: "Red",
+        answer2: "Carl Wheezer",
+        answer3: "Shaggy",
+        answer4: "Ralof",
+        answer5: "Legolas"
     }
-    // {
-    //     question: "",
-    //     answer1: "",
-    //     answer2: "",
-    //     answer3: "",
-    //     answer4: "",
-    //     answer5: ""
-    // }
 ]
 
 
@@ -270,6 +303,7 @@ const questionBox = document.getElementById('questionHolder');
 const frontpage = document.getElementById('mainpage');
 const mainContent = document.getElementById('questionpage');
 const resultPage = document.getElementById('resultpage');
+const questHead = document.getElementById('questionHead');
 
 //DOM Text//
 
@@ -291,18 +325,22 @@ startButton.addEventListener('click', () => {
     pokeNature = pokeNatureBase;
     listGen();
     questionGen();
+    questHead.innerHTML = `Question ${turn}`
     frontpage.style.display = 'none';
     mainContent.style.display = 'block';
 })
 
 
 mainContent.addEventListener('click', (e)=>{
+    endCheck();
     let functVal = e.target.dataset.value;
     if (e.target.localName !== 'button'){
         return
     }
     chosenAnswer(functVal);
     questionGen();
+    turn += 1;
+    questHead.innerHTML = `Question ${turn}`
 })
 
 
