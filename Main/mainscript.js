@@ -1,3 +1,24 @@
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
+
+
+
 ///////////
 //OBJECTS//
 ///////////
@@ -32,9 +53,25 @@ const pokeNatureBase = {
 
 let pokeNature = {}
 
+let availChoices = [];
+
+let actualVal = 0;
+
 /////////////
 //Functions//
 /////////////
+
+const listGen = () => {
+    for (i = 0; i < mainQuestion.length; i ++){
+        availChoices.push(i);
+    }
+}
+
+const questionRng = () => {
+    let questionVal = Math.floor(Math.random() * availChoices.length);
+    actualVal = availChoices[questionVal];
+    availChoices.splice(questionVal, 1);
+}
 
 //Functions for adding values//
 const attack = () => {
@@ -77,6 +114,25 @@ const speed = () => {
     pokeNature.serious += 1;
 }
 
+//Function for calling atk/def/spd/spa/spe//
+
+const chosenAnswer = (val) => {
+    if (val === '1'){
+        attack();
+    }
+    if (val === '2'){
+        defense();
+    }
+    if (val === '3'){
+        spAttack();
+    }
+    if (val === '4'){
+        spDefense();
+    }
+    if (val === '5'){
+        speed();
+    }
+}
 
 
 ///////////////////
@@ -98,6 +154,15 @@ const speed = () => {
 //     }
 // }
 
+// {
+//     question: "",
+//     answer1: "",
+//     answer2: "",
+//     answer3: "",
+//     answer4: "",
+//     answer5: ""
+// }
+
 const mainQuestion = 
     [{
         question: "How many cats do you own?",
@@ -105,167 +170,75 @@ const mainQuestion =
         answer2: "Two",
         answer3: "Four",
         answer4: "I don't have any cats",
-        result: function (ansNum) {
-            if (ansNum = 1){
-                attack();
-                pokeNature.docile += 2;
-                pokeNature.quiet += 2;
-            }
-            if (ansNum = 2){
-                defense();
-                pokeNature.docile += 2;
-                pokeNature.impish += 2;
-                pokeNature.lax += 2;
-            }
-            if (ansNum = 3){
-                spAttack();
-                pokeNature.modest += 2;
-                pokeNature.bashful += 2;
-                pokeNature.rash += 2;
-            }
-            if (ansNum = 4){
-                spDefense();
-                speed();
-            }
-        }
+        answer5: "More of a bird person"
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: "",
-        result: function (ansNum) {
-            if (ansNum = 1){
-
-            }
-            if (ansNum = 2){
-
-            }
-            if (ansNum = 3){
-
-            }
-            if (ansNum = 4){
-                
-            }
-        }
+        question: "Walking through a forest you spot an ogre. You:",
+        answer1: "Charge the ogre directly",
+        answer2: "Approach slowly and observe it",
+        answer3: "Sneak up from behind for an ambush",
+        answer4: "Observe the ogre from a better vantage point",
+        answer5: "Run away",
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "You encounter a lost child. You decide to:",
+        answer1: "Shout, \"Did anyone lose this child?\"",
+        answer2: "Talk to them and try to help",
+        answer3: "Pick up the child and place at a police station",
+        answer4: "Find a police officer",
+        answer5: "Just leave them there"
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "Your little brother breaks your TV and films it for internet clout",
+        answer1: "Snap the camera in half",
+        answer2: "Tell your parents",
+        answer3: "Delete the footage by any means necessary",
+        answer4: "Throw the camera into the river",
+        answer5: "Let it go. No point in engaging"
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "You find $100 on the street",
+        answer1: "Buy yourself a nice dinner and save the rest",
+        answer2: "Try to find who lost it and return the money",
+        answer3: "Invest it in stocks",
+        answer4: "Leave it where it is",
+        answer5: "Tear it into pieces. Loose change is for the poor"
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "You win a vacation(?) with some caveats. It was for:",
+        answer1: "2 week stay at Disney World but all of your drinks leak slightly",
+        answer2: "1 week stay in a virtual world",
+        answer3: "24 hours where the law does not apply to you",
+        answer4: "Time travel to the past but you can only observe",
+        answer5: "Ride a hot air ballon around the world"
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "Theres a zombie outbreak in the town to the east. You first:",
+        answer1: "Contact your friends and family to make sure they're okay",
+        answer2: "Gather people and form a defense force",
+        answer3: "Dig a hole somewhere and hide",
+        answer4: "Reinforce all entryways to your home and prepare to defend",
+        answer5: "Drive to the next closest "
     },
     {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
-    },
-    {
-        question: "",
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: ""
+        question: "You open the front door to find an applie pie at your feet. You: ",
+        answer1: "Throw it as far away as possible",
+        answer2: "Eat it immediately no questions asked",
+        answer3: "Move it to your neighbor's door",
+        answer4: "Donate it to your local shelter",
+        answer5: "Get inspired and order 5 apple pies from McDonalds"
     }
+    // {
+    //     question: "",
+    //     answer1: "",
+    //     answer2: "",
+    //     answer3: "",
+    //     answer4: "",
+    //     answer5: ""
+    // }
 ]
 
 
-console.log(mainQuestion[0].question);
 
 ///////
 //DOM//
@@ -274,10 +247,14 @@ console.log(mainQuestion[0].question);
 ///DOM Functions///
 
 const questionGen = () => {
-    ans1.innerHTML = mainQuestion[0].answer1;
-    ans2.innerHTML = mainQuestion[0].answer2;
-    ans3.innerHTML = mainQuestion[0].answer3;
-    ans4.innerHTML = mainQuestion[0].answer4;
+    questionRng();
+    let i = actualVal;
+    ans1.innerHTML = mainQuestion[i].answer1;
+    ans2.innerHTML = mainQuestion[i].answer2;
+    ans3.innerHTML = mainQuestion[i].answer3;
+    ans4.innerHTML = mainQuestion[i].answer4;
+    ans5.innerHTML = mainQuestion[i].answer5;
+    questionAsked.innerHTML = mainQuestion[i].question;
 }
 
 ////DOM Declarations////
@@ -286,12 +263,17 @@ const questionGen = () => {
 
 const firstName = document.getElementById('fname');
 const birthDay = document.getElementById('birthday');
+const questionBox = document.getElementById('questionHolder');
 
 //DOM Pages//
 
 const frontpage = document.getElementById('mainpage');
 const mainContent = document.getElementById('questionpage');
 const resultPage = document.getElementById('resultpage');
+
+//DOM Text//
+
+const questionAsked = document.getElementById('asking');
 
 //DOM Buttons//
 
@@ -301,17 +283,27 @@ const ans1 = document.getElementById('answer1');
 const ans2 = document.getElementById('answer2');
 const ans3 = document.getElementById('answer3');
 const ans4 = document.getElementById('answer4');
+const ans5 = document.getElementById('answer5');
 
 ////DOM Actions////
 
 startButton.addEventListener('click', () => {
     pokeNature = pokeNatureBase;
+    listGen();
     questionGen();
     frontpage.style.display = 'none';
     mainContent.style.display = 'block';
 })
 
 
+mainContent.addEventListener('click', (e)=>{
+    let functVal = e.target.dataset.value;
+    if (e.target.localName !== 'button'){
+        return
+    }
+    chosenAnswer(functVal);
+    questionGen();
+})
 
 
 

@@ -91,7 +91,17 @@ main{
     background-color: grey;
 }
 
-main div{
+/* main div{
+    width: 80%;
+    height: 95%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 4px 4px rgb(72, 72, 72);
+    padding: 10px 15px;
+} */
+
+main .page{
     width: 80%;
     height: 95%;
     background-color: white;

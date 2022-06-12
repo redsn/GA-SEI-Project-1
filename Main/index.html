@@ -21,7 +21,7 @@
     </header>
 
     <main>
-        <div id="mainpage">
+        <div id="mainpage" class="page">
             <h1>Main Page</h1>
             <img src="" />
             <input id="fname" name="name" placeholder="First Name" type="text">
@@ -30,15 +30,19 @@
             <submit><button id="startQ">Begin!</button></submit>
         </div>
 
-        <div id="questionpage">
+        <div id="questionpage" class="page">
             <h1>Question Page #</h1>
-            <button id="answer1" data-value="1">Answer 1</button>
-            <button id="answer2" data-value="2">Answer 2</button>
-            <button id="answer3" data-value="3">Answer 3</button>
-            <button id="answer4" data-value="4">Answer 4</button>
+            <h2 id="asking">Question space</h2>
+            <div id="questionHolder">
+                <button id="answer1" data-value="1">Answer 1</button>
+                <button id="answer2" data-value="2">Answer 2</button>
+                <button id="answer3" data-value="3">Answer 3</button>
+                <button id="answer4" data-value="4">Answer 4</button>
+                <button id="answer5" data-value="5">Answer 5</button>
+            </div>
         </div>
 
-        <div id="resultpage">
+        <div id="resultpage" class="page">
             <h1>Result Page</h1>
 
         </div>
