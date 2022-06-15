@@ -1,3 +1,5 @@
+////// ADD DESCRIPTIONS AND MORE QUESTIONS //////
+
 
 
 //** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
@@ -22,9 +24,6 @@ const callResult = () => {
             result.forms.forEach(element =>{
                 pokeValForms.push(element);
             })
-            // result.sprites.forEach(element =>{
-            //     pokeValSprites.push(element);
-            // })
             pokeValName.push(result.name);
             pokeValSprites.push(result['sprites']['front_default']);
 
@@ -39,12 +38,7 @@ let pokeValAbility = [];
 let pokeValForms = [];
 let pokeValName = [];
 let pokeValSprites = [];
-
-// let newName = document.createElement('h2');
-// let newImage = document.createElement('img');
-// let newAbility = document.createElement('p');
-
-
+let pokeValNature;
 
 ///////////
 //OBJECTS//
@@ -88,9 +82,42 @@ let turn = 1;
 
 let pokeVal;
 
+let finalNature = [];
+
+let finalObject = [];
+
+let finalIndex;
+
+let limiter = 0;
+
 /////////////
 //Functions//
 /////////////
+
+const natureCheck = () => {
+    let limit = 0;
+    if (limiter === 0){
+    for(key in pokeNature){
+        if (pokeNature[key] > limit){
+            limit = pokeNature[key];
+            finalNature = [];
+            finalNature.push(key);
+        }
+        else if(pokeNature[key] === limit){
+            finalNature.push(key);
+        }
+    } 
+    for (let i = 0; i < finalNature.length; i++){
+        finalObject.push(0);
+    }
+}
+    limiter += 1;
+    for(num in finalObject){
+        if (finalObject[num] >= 3){
+            finalIndex = num;
+        }
+    }
+}
 
 const listGen = () => {
     for (i = 0; i < mainQuestion.length; i ++){
@@ -106,11 +133,17 @@ const questionRng = () => {
 
 const endCheck = () => {
     if (turn >= 11){
+        natureCheck();
+        if(finalIndex !== undefined){
         mainContent.style.display = 'none';
         resultPage.style.display = 'block';
         mainPageSum();
         callResult();
-        setTimeout(()=>{resultPageGen()}, 3000);
+        setTimeout(()=>{
+            resultPageGen();
+            natureStuff();
+        }, 3000);
+    }
     }
 }
 
@@ -118,6 +151,8 @@ const resultPageGen = () => {
     let newName = document.createElement('h2');
     let newImage = document.createElement('img');
     let newAbility = document.createElement('p');
+    let newAbility2 = document.createElement('p');
+    let newAbility3 = document.createElement('p');
 
     newName.innerText = pokeValName;
     newImage.src = `${pokeValSprites}`;
@@ -125,6 +160,33 @@ const resultPageGen = () => {
     resultPage.append(newName);
     resultPage.append(newImage);
     resultPage.append(newAbility);
+
+    if(pokeValAbility[1] === undefined){
+        return;
+    } else if(pokeValAbility[1]['is_hidden'] === true){
+        newAbility2.innerText = `${pokeValAbility[1].ability.name}`;
+        newAbility2.classList.add("hidden_ab");
+        resultPage.append(newAbility2);
+    } else if (pokeValAbility[1] !== undefined){
+        newAbility2.innerText = `${pokeValAbility[1].ability.name}`;
+        resultPage.append(newAbility2);
+    }
+
+    if(pokeValAbility[2] === undefined){
+        return;
+    }
+    else if(pokeValAbility[2] !== undefined){
+        newAbility3.innerText = `${pokeValAbility[2].ability.name}`;
+        newAbility3.classList.add("hidden_ab");
+        resultPage.append(newAbility3);
+    }
+}
+
+const natureStuff = () =>{
+    let addNature = document.createElement('p');
+
+    addNature.innerText = finalNature[finalIndex];
+    resultPage.append(addNature);
 }
 
 const mainPageSum = () =>{
@@ -134,63 +196,90 @@ const mainPageSum = () =>{
 }
 
 //Functions for adding values//
-const attack = () => {
+const attack = (rate) => {
+    if(rate === 0){
     pokeNature.hardy += 1;
     pokeNature.lonely += 1;
     pokeNature.adamant += 1;
     pokeNature.naughty += 1;
     pokeNature.brave += 1;
+    }
 }
 
-const defense = () => {
+const defense = (rate) => {
+    if(rate === 0){
     pokeNature.bold += 1;
     pokeNature.docile += 1;
     pokeNature.impish += 1;
     pokeNature.lax += 1;
     pokeNature.relaxed += 1;
+    }
 }
 
-const spAttack = () => {
+const spAttack = (rate) => {
+    if(rate === 0){
     pokeNature.modest += 1;
     pokeNature.mild += 1;
     pokeNature.bashful += 1;
     pokeNature.rash += 1;
     pokeNature.quiet += 1;
+    }
 }
 
-const spDefense = () => {
+const spDefense = (rate) => {
+    if(rate === 0){
     pokeNature.calm += 1;
     pokeNature.gentle += 1;
     pokeNature.careful += 1;
     pokeNature.quirky += 1;
     pokeNature.sassy += 1;
+    }
 }
 
-const speed = () => {
+const speed = (rate) => {
+    if(rate === 0){
     pokeNature.timid += 1;
     pokeNature.hasty += 1;
     pokeNature.jolly += 1;
     pokeNature.naive += 1;
     pokeNature.serious += 1;
+    }
 }
 
 //Function for calling atk/def/spd/spa/spe//
 
 const chosenAnswer = (val) => {
+    if (turn >= 11 && finalNature.length !== 1){
+        if (val === '1'){
+            finalObject[0] += 1;
+        }
+        if (val === '2'){
+            finalObject[1] += 1;
+        }
+        if (val === '3'){
+            finalObject[2] += 1;
+        }
+        if (val === '4'){
+            finalObject[3] += 1;
+        }
+        if (val === '5'){
+            finalObject[4] += 1;
+        }
+    }
     if (val === '1'){
-        attack();
+        attack(limiter);
     }
     if (val === '2'){
-        defense();
+        defense(limiter);
     }
     if (val === '3'){
-        spAttack();
+        spAttack(limiter);
     }
     if (val === '4'){
-        spDefense();
+        spDefense(limiter);
     }
     if (val === '5'){
-        speed();
+        speed(limiter);
     }
 }
 
@@ -198,21 +287,6 @@ const chosenAnswer = (val) => {
 ///////////////////
 //Question/Answer//
 ///////////////////
-
-// result: function (ansNum) {
-//     if (ansNum = 1){
-
-//     }
-//     if (ansNum = 2){
-
-//     }
-//     if (ansNum = 3){
-
-//     }
-//     if (ansNum = 4){
-        
-//     }
-// }
 
 // {
 //     question: "",
@@ -319,7 +393,39 @@ const mainQuestion =
         answer3: "Shaggy",
         answer4: "Ralof",
         answer5: "Legolas"
-    }
+    },
+    {
+    question: "placeholder",
+    answer1: "fffdddd",
+    answer2: "fffdddd",
+    answer3: "fffdddd",
+    answer4: "fffdddd",
+    answer5: "fffdddd"
+    },
+    {
+        question: "placeholder",
+        answer1: "fffdddd",
+        answer2: "fffdddd",
+        answer3: "fffdddd",
+        answer4: "fffdddd",
+        answer5: "fffdddd"
+        },
+        {
+            question: "placeholder",
+            answer1: "fffdddd",
+            answer2: "fffdddd",
+            answer3: "fffdddd",
+            answer4: "fffdddd",
+            answer5: "fffdddd"
+            },
+            {
+                question: "placeholder",
+                answer1: "fffdddd",
+                answer2: "fffdddd",
+                answer3: "fffdddd",
+                answer4: "fffdddd",
+                answer5: "fffdddd"
+                }
 ]
 
 
@@ -355,16 +461,11 @@ const frontpage = document.getElementById('mainpage');
 const mainContent = document.getElementById('questionpage');
 const resultPage = document.getElementById('resultpage');
 const questHead = document.getElementById('questionHead');
+const supplementPage = document.getElementById('supplement');
 
 //DOM Text//
 
 const questionAsked = document.getElementById('asking');
-
-//DOM Val Append//
-
-// const newName = document.createElement('h2');
-// const newImage = document.createElement('img');
-// const newAbility = document.createElement('p');
 
 //DOM Buttons//
 
@@ -410,7 +511,7 @@ mainContent.addEventListener('click', (e)=>{
 const skipBut = document.getElementById('skip');
 
 skipBut.addEventListener('click', () =>{
- pokeVal = 43;
+ pokeVal = 19;
  frontpage.style.display = 'none';
  resultPage.style.display = 'block';
  callResult();
