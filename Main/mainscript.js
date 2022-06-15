@@ -1,21 +1,48 @@
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+
 
 //** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+/////////
+//FETCH//
+/////////
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+const url = 'https://pokeapi.co/api/v2/pokemon/'
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+const callResult = () => {
+    let newUrl = url + `${pokeVal}/`;
+    fetch(newUrl)
+        .then(result => {
+            return result.json()
+        })
+        .then(result =>{
+            console.log(result);
+            result.abilities.forEach(element =>{
+                pokeValAbility.push(element);
+            })
+            result.forms.forEach(element =>{
+                pokeValForms.push(element);
+            })
+            // result.sprites.forEach(element =>{
+            //     pokeValSprites.push(element);
+            // })
+            pokeValName.push(result.name);
+            pokeValSprites.push(result['sprites']['front_default']);
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+        })
+}
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+/////////////////
+//Result Values//
+/////////////////
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
+let pokeValAbility = [];
+let pokeValForms = [];
+let pokeValName = [];
+let pokeValSprites = [];
 
-//** SEARCH ALL DOCS FOR ##REMOVEME before submitting */
-
+// let newName = document.createElement('h2');
+// let newImage = document.createElement('img');
+// let newAbility = document.createElement('p');
 
 
 
@@ -59,6 +86,8 @@ let actualVal = 0;
 
 let turn = 1;
 
+let pokeVal;
+
 /////////////
 //Functions//
 /////////////
@@ -79,7 +108,29 @@ const endCheck = () => {
     if (turn >= 11){
         mainContent.style.display = 'none';
         resultPage.style.display = 'block';
+        mainPageSum();
+        callResult();
+        setTimeout(()=>{resultPageGen()}, 3000);
     }
+}
+
+const resultPageGen = () => {
+    let newName = document.createElement('h2');
+    let newImage = document.createElement('img');
+    let newAbility = document.createElement('p');
+
+    newName.innerText = pokeValName;
+    newImage.src = `${pokeValSprites}`;
+    newAbility.innerText = pokeValAbility[0].ability.name;
+    resultPage.append(newName);
+    resultPage.append(newImage);
+    resultPage.append(newAbility);
+}
+
+const mainPageSum = () =>{
+    let firstVal = parseInt(firstName.value.length);
+    let secondVal = parseInt(birthDay.value.length);
+    pokeVal = firstVal + secondVal;
 }
 
 //Functions for adding values//
@@ -309,6 +360,12 @@ const questHead = document.getElementById('questionHead');
 
 const questionAsked = document.getElementById('asking');
 
+//DOM Val Append//
+
+// const newName = document.createElement('h2');
+// const newImage = document.createElement('img');
+// const newAbility = document.createElement('p');
+
 //DOM Buttons//
 
 const startButton = document.getElementById('startQ');
@@ -323,6 +380,7 @@ const ans5 = document.getElementById('answer5');
 
 startButton.addEventListener('click', () => {
     pokeNature = pokeNatureBase;
+    mainPageSum();
     listGen();
     questionGen();
     questHead.innerHTML = `Question ${turn}`
@@ -347,7 +405,18 @@ mainContent.addEventListener('click', (e)=>{
 
 
 
+///skip///
 
+const skipBut = document.getElementById('skip');
+
+skipBut.addEventListener('click', () =>{
+ pokeVal = 43;
+ frontpage.style.display = 'none';
+ resultPage.style.display = 'block';
+ callResult();
+ setTimeout(()=>{resultPageGen()}, 3000);
+ 
+})
 
 
 
