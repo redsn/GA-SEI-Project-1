@@ -39,6 +39,7 @@ let pokeValForms = [];
 let pokeValName = [];
 let pokeValSprites = [];
 let pokeValNature;
+let pokeValPlayer;
 
 ///////////
 //OBJECTS//
@@ -71,6 +72,38 @@ const pokeNatureBase = {
     "serious": 0,
     "timid": 0
 }
+const natureList = ['adamant', 'brave', 'lonely', 'naughty', 'bold', 'lax', 'relaxed', 'impish', 'timid',
+'hasty', 'jolly', 'naive', 'mild', 'quiet', 'rash', 'modest', 'gently', 'calm', 'sassy', 'careful', 'hardy',
+'docile', 'serious', 'bashful', 'quirky']
+
+const natureListDesc =[
+    [`“Often dozes off”, “Loves to eat”, “Often scatters things”, “Likes to relax”, “Scatters things often”`],
+    [`“Proud of its power”, “Likes to thrash about”, “A little quick tempered”, “Likes to fight”, “Quick tempered”`],
+    [`“Sturdy body”, “Capable of taking hits”, “Highly persistent”, “Good endurance”, “Good perseverance”`],
+    [`“Likes to run”, “Alert to sounds”, “Impetuous and silly”, “Somewhat of a clown”, “Quick to flee”`],
+    [`“Highly curious”, “Mischievous”, “Thoroughly cunning”, “Often lost in thought”, “Very finicky”`],
+    [`“Strong willed”, “Somewhat vain”, “Strongly defiant”, “Hates to lose”, “Somewhat stubborn”`]
+]
+
+// const natureTracker = [
+//     [adamant, brave, lonely, naughty],
+//     [bold, lax, relaxed, impish],
+//     [timid, hasty, jolly, naive],
+//     [mild, quiet, rash, modest],
+//     [gentle, calm, sassy, careful],
+//     [hardy, docile, serious, bashful, quirky]
+// ]
+
+// HP – “Often dozes off”, “Loves to eat”, “Often scatters things”, “Likes to relax”, “Scatters things often”
+// Attack – “Proud of its power”, “Likes to thrash about”, “A little quick tempered”, “Likes to fight”, “Quick tempered”
+// Defense – “Sturdy body”, “Capable of taking hits”, “Highly persistent”, “Good endurance”, “Good perseverance”
+// Speed – “Likes to run”, “Alert to sounds”, “Impetuous and silly”, “Somewhat of a clown”, “Quick to flee”
+// Sp. Atk. – “Highly curious”, “Mischievous”, “Thoroughly cunning”, “Often lost in thought”, “Very finicky”
+// Sp. Def. – “Strong willed”, “Somewhat vain”, “Strongly defiant”, “Hates to lose”, “Somewhat stubborn”
+
+/////
+
+let newText;
 
 let pokeNature = {}
 
@@ -94,7 +127,7 @@ let limiter = 0;
 //Functions//
 /////////////
 
-const natureCheck = () => {
+const natureCheck = () => {  /// Checks for final nature solution
     let limit = 0;
     if (limiter === 0){
     for(key in pokeNature){
@@ -119,25 +152,48 @@ const natureCheck = () => {
     }
 }
 
-const listGen = () => {
+
+const listGen = () => { // generates main question list
     for (i = 0; i < mainQuestion.length; i ++){
         availChoices.push(i);
     }
 }
 
-const questionRng = () => {
+const questionRng = () => { // rng for questions
     let questionVal = Math.floor(Math.random() * availChoices.length);
     actualVal = availChoices[questionVal];
     availChoices.splice(questionVal, 1);
 }
 
-const endCheck = () => {
+const descriptionGen = () => {
+    let valCheck = natureList.indexOf(finalNature[finalIndex]);
+    if(0 <= valCheck <= 3){
+        newText = natureListDesc[0]
+    }
+    if(4<= valCheck <=7){
+        newText = natureListDesc[1]
+    }
+    if(8<= valCheck <=11){
+        newText = natureListDesc[2]
+    }
+    if(12<= valCheck <=15){
+        newText = natureListDesc[3]
+    }
+    if(16<= valCheck <= 19){
+        newText = natureListDesc[4]
+    }
+    if(20<= valCheck <= 24){
+        newText = natureListDesc[5]
+    }
+
+}
+
+const endCheck = () => { // conditional check for endstate
     if (turn >= 11){
         natureCheck();
         if(finalIndex !== undefined){
         mainContent.style.display = 'none';
         resultPage.style.display = 'block';
-        mainPageSum();
         callResult();
         setTimeout(()=>{
             resultPageGen();
@@ -147,7 +203,8 @@ const endCheck = () => {
     }
 }
 
-const resultPageGen = () => {
+const resultPageGen = () => { //endpage generation
+    
     let newName = document.createElement('h2');
     let newImage = document.createElement('img');
     let newAbility = document.createElement('p');
@@ -182,18 +239,50 @@ const resultPageGen = () => {
     }
 }
 
-const natureStuff = () =>{
+const natureStuff = () =>{ // page second half generation;
+    let playerName = document.createElement('p');
     let addNature = document.createElement('p');
+    let newTextAdd = document.createElement('p');
+    let messageNameNature = document.createElement('p');
+    let fillerText = document.createElement('p');
 
+    messageNameNature.innerText = `${pokeValPlayer}, your nature is ${finalNature[finalIndex]}`
+    playerName.innerText = pokeValPlayer;
     addNature.innerText = finalNature[finalIndex];
-    resultPage.append(addNature);
+    fillerText.innerText = "You tend to be:"
+
+    descriptionGen();
+
+    newTextAdd.innerText = newText;
+
+    resultPage.append(messageNameNature);
+    resultPage.append(fillerText);
+    resultPage.append(newTextAdd);
+
 }
 
-const mainPageSum = () =>{
-    let firstVal = parseInt(firstName.value.length);
-    let secondVal = parseInt(birthDay.value.length);
-    pokeVal = firstVal + secondVal;
+const mainPageSum = () =>{  /// Pokemon link generation
+    let firstVal;
+    let secondVal;
+    let resultCalc;
+
+    if(firstName.value === "" || firstName.value === null){
+        pokeValPlayer = 'unknown';
+        firstVal = 12;
+    }
+    if(favoriteP.value === ""){
+        secondVal = Math.floor(Math.random()*151)
+    }
+    if(firstName.value !== "" && favoriteP.value !== ""){
+        firstVal = parseInt(firstName.value.length);
+        secondVal = parseInt(favoriteP.value.length);
+        pokeValPlayer = firstName.value;
+    }
+
+    resultCalc = (firstVal ** secondVal) % (898);
+    pokeVal = resultCalc;
 }
+
 
 //Functions for adding values//
 const attack = (rate) => {
@@ -307,125 +396,261 @@ const mainQuestion =
         answer5: "More of a bird person"
     },
     {
-        question: "Walking through a forest you spot an ogre. You:",
-        answer1: "Charge the ogre directly",
-        answer2: "Approach slowly and observe it",
-        answer3: "Sneak up from behind for an ambush",
-        answer4: "Observe the ogre from a better vantage point",
-        answer5: "Run away",
+        question: "Cats are better than dogs",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "You encounter a lost child. You decide to:",
-        answer1: "Shout, \"Did anyone lose this child?\"",
-        answer2: "Talk to them and try to help",
-        answer3: "Pick up the child and place at a police station",
-        answer4: "Find a police officer",
-        answer5: "Just leave them there"
+        question: "Books are for nerds",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "Your little brother breaks your TV and films it for internet clout",
-        answer1: "Snap the camera in half",
-        answer2: "Tell your parents",
-        answer3: "Delete the footage by any means necessary",
-        answer4: "Throw the camera into the river",
-        answer5: "Let it go. No point in engaging"
+        question: "Never wear a hat indoors",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "You find $100 on the street",
-        answer1: "Buy yourself a nice dinner and save the rest",
-        answer2: "Try to find who lost it and return the money",
-        answer3: "Invest it in stocks",
-        answer4: "Leave it where it is",
-        answer5: "Tear it into pieces. Loose change is for the poor"
+        question: "Gamers rise up",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "You win a vacation(?) with some caveats. It was for:",
-        answer1: "2 week stay at Disney World but all of your drinks leak slightly",
-        answer2: "1 week stay in a virtual world",
-        answer3: "24 hours where the law does not apply to you",
-        answer4: "Time travel to the past but you can only observe",
-        answer5: "Ride a hot air ballon around the world"
+        question: "Despacito was over-rated",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "Theres a zombie outbreak in the town to the east. You first:",
-        answer1: "Contact your friends and family to make sure they're okay",
-        answer2: "Gather people and form a defense force",
-        answer3: "Dig a hole somewhere and hide",
-        answer4: "Reinforce all entryways to your home and prepare to defend",
-        answer5: "Drive to the next closest "
+        question: "Mankey is the strongest monkey",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "You open the front door to find an applie pie at your feet. You: ",
-        answer1: "Throw it as far away as possible",
-        answer2: "Eat it immediately no questions asked",
-        answer3: "Move it to your neighbor's door",
-        answer4: "Donate it to your local shelter",
-        answer5: "Get inspired and order 5 apple pies from McDonalds"
+        question: "Ash's Pokemon career is filled with pity",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "One of the following is now apart of reality. You choose:",
-        answer1: "The Dragonballs",
-        answer2: "Hogwarts",
-        answer3: "The World 2.0",
-        answer4: "San Andreas",
-        answer5: "The Force"
+        question: "Brock was misunderstood",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "Which of the following would you want to try.",
-        answer1: "A treestar",
-        answer2: "Scooby Snacks",
-        answer3: "Soylent Green",
-        answer4: "Chef's Chocolate Salty Balls",
-        answer5: "Lembas"
+        question: "Squirtle was objectively the best choice",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "A mythical creature is impressed by you and offers one of the following as a companion.",
-        answer1: "A Red Dragon",
-        answer2: "A Space Lizard",
-        answer3: "A Hydra",
-        answer4: "A Chimera",
-        answer5: "A Griffin"
+        question: "The \"Let's Go\" versions were a mistake",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-        question: "You wake from a horrid nightmare to see ___ above you. It was: ",
-        answer1: "Red",
-        answer2: "Carl Wheezer",
-        answer3: "Shaggy",
-        answer4: "Ralof",
-        answer5: "Legolas"
+        question: "Gamefreak hasn't made anything worthwhile in years",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
-    question: "placeholder",
-    answer1: "fffdddd",
-    answer2: "fffdddd",
-    answer3: "fffdddd",
-    answer4: "fffdddd",
-    answer5: "fffdddd"
+        question: "Jessie and James are the heart of the series",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Generation 1:RBY was the best generation",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Generation 2:GSC was the best generation",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Eevee is a better mascot than Pikachu",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Team Rocket should've been a bigger part of the game series",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "10 years old is probably too young for a journey",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Ash's revival via poketears was strange",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Pikachu's vacation is the best short objectively",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Generation 2 was a lazy update to generation 1",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "The Team Rocket event at Goldenrod was tedious",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "You would buy a Magikarp for $1000",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "An open world version of Pokemon works better than a linear path",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Mewtwo was pretty cool",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Mimikyu is objectively the best Pokemon",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Nuzlocke is the best format to play",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "You feel comfortable leaving your starter at the Daycare",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Mega-evolutions were a great addition to the series",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     },
     {
         question: "placeholder",
-        answer1: "fffdddd",
-        answer2: "fffdddd",
-        answer3: "fffdddd",
-        answer4: "fffdddd",
-        answer5: "fffdddd"
-        },
-        {
-            question: "placeholder",
-            answer1: "fffdddd",
-            answer2: "fffdddd",
-            answer3: "fffdddd",
-            answer4: "fffdddd",
-            answer5: "fffdddd"
-            },
-            {
-                question: "placeholder",
-                answer1: "fffdddd",
-                answer2: "fffdddd",
-                answer3: "fffdddd",
-                answer4: "fffdddd",
-                answer5: "fffdddd"
-                }
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "You are willing to look after a Snorlax",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Fire, water and grass are the best selection for starters",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Digimon was better",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
 ]
 
 
@@ -452,7 +677,7 @@ const questionGen = () => {
 //DOM Inputs//
 
 const firstName = document.getElementById('fname');
-const birthDay = document.getElementById('birthday');
+const favoriteP = document.getElementById('favoritePokemon');
 const questionBox = document.getElementById('questionHolder');
 
 //DOM Pages//
@@ -506,48 +731,15 @@ mainContent.addEventListener('click', (e)=>{
 
 
 
-///skip///
+// ///skip///
 
-const skipBut = document.getElementById('skip');
+// const skipBut = document.getElementById('skip');
 
-skipBut.addEventListener('click', () =>{
- pokeVal = 19;
- frontpage.style.display = 'none';
- resultPage.style.display = 'block';
- callResult();
- setTimeout(()=>{resultPageGen()}, 3000);
+// skipBut.addEventListener('click', () =>{
+//  pokeVal = 19;
+//  frontpage.style.display = 'none';
+//  resultPage.style.display = 'block';
+//  callResult();
+//  setTimeout(()=>{resultPageGen()}, 3000);
  
-})
-
-
-
-
-
-
-
-
-// ///////////////////////////// Functional fetch URL # disabled by courtesy
-// let url = 'https://pokeapi.co/api/v2/generation/3/';
-// let url2 = 'https://pokeapi.co/api/v2/pokemon/1/'
-// let array1 = [];
-
-// fetch(url)
-//     .then(result =>{
-//         return result.json()
-//     })
-//     .then(result =>{
-//         console.log(result);
-//         result.pokemon_species.forEach(element => {
-//                 array1.push(element)})
-//     })
-
-// // fetch(url2)
-// //     .then(result =>{
-// //         return result.json()
-// //     })
-// //     .then(result =>{
-// //         console.log(result);
-// //     })
-
-// // console.log(array1);
-// // ///////////////////////////////////
+// })
