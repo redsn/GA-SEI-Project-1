@@ -37,6 +37,7 @@ const callResult = () => {
 let pokeValAbility = [];
 let pokeValForms = [];
 let pokeValName = [];
+let newPokeName;
 let pokeValSprites = [];
 let pokeValNature;
 let pokeValPlayer;
@@ -46,31 +47,31 @@ let pokeValPlayer;
 ///////////
 
 const pokeNatureBase = {
-    "adamant": 0,
-    "bashful": 0,
-    "bold": 0,
-    "brave": 0,
-    "calm": 0,
-    "careful": 0,
-    "docile": 0,
-    "gentle": 0,
-    "hardy": 0,
-    "hasty": 0,
-    "impish": 0,
-    "jolly": 0,
-    "lax": 0,
-    "lonely": 0,
-    "mild": 0,
-    "modest": 0,
-    "naive": 0,
-    "naughty": 0,
-    "quiet": 0,
-    "quirky": 0,
-    "rash": 0,
-    "relaxed": 0,
-    "sassy": 0,
-    "serious": 0,
-    "timid": 0
+    "Adamant": 0,
+    "Bashful": 0,
+    "Bold": 0,
+    "Brave": 0,
+    "Calm": 0,
+    "Careful": 0,
+    "Docile": 0,
+    "Gentle": 0,
+    "Hardy": 0,
+    "Hasty": 0,
+    "Impish": 0,
+    "Jolly": 0,
+    "Lax": 0,
+    "Lonely": 0,
+    "Mild": 0,
+    "Modest": 0,
+    "Naive": 0,
+    "Naughty": 0,
+    "Quiet": 0,
+    "Quirky": 0,
+    "Rash": 0,
+    "Relaxed": 0,
+    "Sassy": 0,
+    "Serious": 0,
+    "Timid": 0
 }
 const natureList = ['adamant', 'brave', 'lonely', 'naughty', 'bold', 'lax', 'relaxed', 'impish', 'timid',
 'hasty', 'jolly', 'naive', 'mild', 'quiet', 'rash', 'modest', 'gently', 'calm', 'sassy', 'careful', 'hardy',
@@ -213,7 +214,9 @@ const resultPageGen = () => { //endpage generation
     let newAbility2 = document.createElement('p');
     let newAbility3 = document.createElement('p');
 
-    newName.innerText = pokeValName;
+    newPokeName = pokeValName[0];
+    newPokeName = newPokeName[0].toUpperCase() + newPokeName.substring(1);
+    newName.innerText = newPokeName;
     newName.classList.add('pokeName')
     newImage.src = `${pokeValSprites}`;
     newAbility.classList.add("ability1");
@@ -247,10 +250,14 @@ const resultPageGen = () => { //endpage generation
 const loader = () => { // Temp loader for generating final result
     let loading = document.createElement('div');
     loading.classList.add("page");
+    loading.classList.add("loadingStyle")
     loading.setAttribute('id', 'overlay');
     loading.style.zIndex = "3";
+    loading.innerText = 'loading....';
+    loading.style.backgroundColor = 'rgb(226, 52, 52)'
     mainLoader.append(loading);
     setTimeout(() => {
+        loading.innerText = '';
         loading.classList.add('goAway');
         loading.classList.remove('page');
     }, 2000);
@@ -272,7 +279,7 @@ const natureStuff = () =>{ // page second half generation;
     messageNameNature.innerText = `${pokeValPlayer}, your nature is ${finalNature[finalIndex]}`
     playerName.innerText = pokeValPlayer;
     addNature.innerText = finalNature[finalIndex];
-    resultpageh1.innerText = finalNature[finalIndex];
+    // resultpageh1.innerText = finalNature[finalIndex];
     fillerText.innerText = "You tend to be:"
 
     descriptionGen();

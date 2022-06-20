@@ -19,6 +19,10 @@ body{
     background-color: rgb(255, 186, 186);
 }
 
+/* font-family: 'League Gothic', sans-serif;
+font-family: 'Staatliches', cursive;
+font-family: 'Tai Heritage Pro', serif; */
+
 ul{
     display: flex;
     list-style-type: none;
@@ -31,6 +35,9 @@ ul li button{
     border: none;
 }
 
+button{
+    font-family: 'Staatliches', cursive;
+}
 
 header{
     display: flex;
@@ -45,32 +52,6 @@ header{
 header h1{
     margin-right: 10px;
     color: white;
-    /* color: var(--main-bg-third) */
-    /* text-shadow: 1px 0px black, -1px 0px black, 0px 1px black, 0px -1px black; */
-    /* text-shadow: 1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000,
-    0px 1px 0 #000,
-    0px -1px 0 #000,
-    -1px 0px 0 #000,
-    1px 0px 0 #000,
-    2px 2px 0 #000,
-    -2px 2px 0 #000,
-    2px -2px 0 #000,
-    -2px -2px 0 #000,
-    0px 2px 0 #000,
-    0px -2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000,
-    1px 2px 0 #000,
-    -1px 2px 0 #000,
-    1px -2px 0 #000,
-    -1px -2px 0 #000,
-    2px 1px 0 #000,
-    -2px 1px 0 #000,
-    2px -1px 0 #000,
-    -2px -1px 0 #000; */
 }
 
 ul li a{
@@ -94,6 +75,14 @@ main{
     width: 100%;
     height: 90%;
     background-color: grey;
+}
+
+h1{
+    font-family: 'League Gothic', sans-serif;
+}
+
+p{
+    font-family: "Times New Roman"
 }
 
 #questionHolder button{
@@ -131,6 +120,7 @@ main .page{
     border: 1px solid black;
     box-shadow: 4px 4px rgb(72, 72, 72);
     padding: 10px 15px;
+    border-top: 10px var(--main-bg-third) solid;
 }
 
 footer{
@@ -191,13 +181,17 @@ footer{
     width: 50%;
     bottom: 0;
     border-top: 1px black solid;
+    margin-top: 10%;
 }
 
 #natureModalMain ul li{
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+    display: block;
+    /* justify-content: center;
+    justify-items: center; */
     padding: 5px;
+    margin: 5px auto;
+    text-align: center;
+    font-size: larger;
 }
 
 #natureModalMain h1{
@@ -208,6 +202,14 @@ footer{
 
 #resultpage img{
     width: 20%
+}
+
+#resultpage h1{
+    font-family: 'League Gothic', sans-serif;
+}
+
+#questionpage h2{
+    margin-top: 5%;
 }
 
 .ability1{
@@ -255,6 +257,7 @@ footer{
     margin-top: 10%;
     font-weight: 700;
     font-size: larger;
+    font-family: cursive;
 }
 
 .cssFiller{
@@ -271,6 +274,12 @@ footer{
     margin-bottom: 5%;
 }
 
+.loadingStyle{
+    color: white;
+    background-color: var(--main-bg-secondary);
+    font-size: x-large;
+    font-weight: 900;
+}
 
 /* MODAL */
 
@@ -302,6 +311,12 @@ footer{
     cursor: pointer;
     border: 1px black solid;
     padding: 3px;
+}
+
+.close:hover{
+    color: white;
+    background-color: black;
+
 }
 
 
