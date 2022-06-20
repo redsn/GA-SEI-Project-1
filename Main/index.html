@@ -13,8 +13,8 @@
         <h1>PokeNat</h1>
         <nav id="headerNav">
             <ul>
-                <li><a href="#">Main</a></li>
-                <li><a href="#">All Natures</a></li>
+                <li><a href="index.html">Main</a></li>
+                <li><button id="natureModal"><a href="#">All Natures</a></button></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
@@ -24,8 +24,14 @@
         <div id="mainpage" class="page">
             <h1>Main Page</h1>
             <img src="" />
+            <div class="starter">
+                <p>Please enter a name:</p>
             <input id="fname" name="name" placeholder="nickname" type="text">
+            </div>
+            <div class="starter">
+                <p>What is your favorite Pokemon?</p>
             <input id="favoritePokemon" name="favorite" placeholder="Bulbasaur"type="text">
+            </div>
             <br/>
             <submit><button id="startQ">Begin!</button></submit>
             <!-- <button id="skip">skip</button> -->
@@ -44,7 +50,7 @@
         </div>
 
         <div id="resultpage" class="page">
-            <h1>Result Page</h1>
+            <h1 id="resulth1">Result Page</h1>
 
         </div>
 
@@ -52,6 +58,58 @@
             <h1>Bonus</h1>
         </div>
     </main>
+
+<div id="natureModalMain" class="modalN">
+    <div class="modalNContent">
+        <span class="close">&times;</span>
+        <h1>Potential Results</h1>
+        <div>
+            <ul>
+                <li>Hardy</li>
+                <li>Lonely</li>
+                <li>Adamant</li>
+                <li>Naughty</li>
+                <li>Brave</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Bold</li>
+                <li>Docile</li>
+                <li>Impish</li>
+                <li>Lax</li>
+                <li>Relaxed</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Modest</li>
+                <li>Mild</li>
+                <li>Bashful</li>
+                <li>Rash</li>
+                <li>Quiet</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Calm</li>
+                <li>Gentle</li>
+                <li>Careful</li>
+                <li>Quirky</li>
+                <li>Sassy</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Timid</li>
+                <li>Hasty</li>
+                <li>Jolly</li>
+                <li>Naive</li>
+                <li>Serious</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
     <footer>
         <nav id="footerNav">

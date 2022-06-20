@@ -26,6 +26,11 @@ ul{
     justify-content: center;
 }
 
+ul li button{
+    background-color: var(--main-bg-primary);
+    border: none;
+}
+
 
 header{
     display: flex;
@@ -91,6 +96,23 @@ main{
     background-color: grey;
 }
 
+#questionHolder button{
+    padding: 20px;
+    color: white;
+    border-radius: 6px;
+    background-color: var(--main-bg-primary);
+    margin: 10px;
+    width: 100%;
+    font-size: larger;
+    font-weight: 700;
+}
+
+#questionHolder button:hover{
+    background-color: var(--main-bg-secondary);
+}
+
+
+
 /* main div{
     width: 80%;
     height: 95%;
@@ -117,7 +139,7 @@ footer{
     justify-content: center;
     bottom: 0;
     left: 0;
-    height: 2%;
+    height: 3%;
     background-color: var(--main-bg-secondary);
     box-shadow: -2px -2px 5px rgb(74, 74, 74);
 }
@@ -134,6 +156,21 @@ footer{
     display: block;
 }
 
+#mainpage button{
+    padding: 30px;
+    border: 2 black solid;
+    background-color: var(--main-bg-primary);
+    color: white;
+    font-size: larger;
+    font-weight: 800;
+    border-radius: 6px;
+}
+
+#mainpage button:hover{
+    background-color: var(--main-bg-secondary);
+}
+
+
 #questionpage{
     display: none;
 }
@@ -142,13 +179,131 @@ footer{
     display: none;
 }
 
+
 #supplement{
     display: none;
 }
 
-.hidden_ab{
-    color: red;
+#questionHolder{
+    display: inline-block;
+    justify-content: center;
+    justify-items: center;
+    width: 50%;
+    bottom: 0;
+    border-top: 1px black solid;
 }
+
+#natureModalMain ul li{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 5px;
+}
+
+#natureModalMain h1{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+#resultpage img{
+    width: 20%
+}
+
+.ability1{
+    display:block;
+    padding: 10px;
+    /* float: left; */
+    color:white;
+    background-color: black;
+    text-align: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.ability2{
+    display:block;
+    padding: 10px;
+    /* float: left; */
+    color:white;
+    background-color: #9797ff;
+    text-align: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.hidden_ab{
+    display:block;
+    padding: 10px;
+    /* float: left; */
+    color: white;
+    background-color: red;
+    text-align: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.starter{
+    margin: 20px;
+}
+
+.starter input{
+    width: 300px;
+}
+
+.cssMessage{
+    margin-top: 10%;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.cssFiller{
+    font-weight: 600;
+    margin-top: 10%;
+    margin-bottom: 20px;
+}
+
+.resultPageh1{
+    margin-bottom: 5%;
+}
+
+.pokeName{
+    margin-bottom: 5%;
+}
+
+
+/* MODAL */
+
+.modalN{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+    background-color: rgb(165, 165, 165, 0.4);
+}
+
+.modalNContent{
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid black;
+    width: 90%;
+}
+
+.close{
+    float: right;
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px black solid;
+    padding: 3px;
+}
+
 
 /* MEDIA SCALING */
 
@@ -159,7 +314,7 @@ larg 1200 */
 
 @media only screen and (min-width: 600px){
     body{
-        background-color: green;
+        background-color: white;
     }
 }
 

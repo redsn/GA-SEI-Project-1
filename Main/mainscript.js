@@ -193,12 +193,14 @@ const endCheck = () => { // conditional check for endstate
         natureCheck();
         if(finalIndex !== undefined){
         mainContent.style.display = 'none';
-        resultPage.style.display = 'block';
+        loader();
+        // resultPage.style.display = 'block';
         callResult();
         setTimeout(()=>{
             resultPageGen();
             natureStuff();
-        }, 3000);
+            resultPage.style.display = 'block';
+        }, 2000);
     }
     }
 }
@@ -212,7 +214,9 @@ const resultPageGen = () => { //endpage generation
     let newAbility3 = document.createElement('p');
 
     newName.innerText = pokeValName;
+    newName.classList.add('pokeName')
     newImage.src = `${pokeValSprites}`;
+    newAbility.classList.add("ability1");
     newAbility.innerText = pokeValAbility[0].ability.name;
     resultPage.append(newName);
     resultPage.append(newImage);
@@ -226,6 +230,7 @@ const resultPageGen = () => { //endpage generation
         resultPage.append(newAbility2);
     } else if (pokeValAbility[1] !== undefined){
         newAbility2.innerText = `${pokeValAbility[1].ability.name}`;
+        newAbility2.classList.add('ability2');
         resultPage.append(newAbility2);
     }
 
@@ -239,6 +244,18 @@ const resultPageGen = () => { //endpage generation
     }
 }
 
+const loader = () => { // Temp loader for generating final result
+    let loading = document.createElement('div');
+    loading.classList.add("page");
+    loading.setAttribute('id', 'overlay');
+    loading.style.zIndex = "3";
+    mainLoader.append(loading);
+    setTimeout(() => {
+        loading.classList.add('goAway');
+        loading.classList.remove('page');
+    }, 2000);
+}
+
 const natureStuff = () =>{ // page second half generation;
     let playerName = document.createElement('p');
     let addNature = document.createElement('p');
@@ -246,9 +263,16 @@ const natureStuff = () =>{ // page second half generation;
     let messageNameNature = document.createElement('p');
     let fillerText = document.createElement('p');
 
+    messageNameNature.classList.add('cssMessage');
+    fillerText.classList.add('cssFiller');
+    newTextAdd.classList.add('cssNewtext');
+    resultpageh1.classList.add('resultPageh1')
+
+
     messageNameNature.innerText = `${pokeValPlayer}, your nature is ${finalNature[finalIndex]}`
     playerName.innerText = pokeValPlayer;
     addNature.innerText = finalNature[finalIndex];
+    resultpageh1.innerText = finalNature[finalIndex];
     fillerText.innerText = "You tend to be:"
 
     descriptionGen();
@@ -396,7 +420,7 @@ const mainQuestion =
         answer5: "More of a bird person"
     },
     {
-        question: "Cats are better than dogs",
+        question: "Cats are better than dogs.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -404,7 +428,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Books are for nerds",
+        question: "Books are for nerds.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -412,7 +436,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Never wear a hat indoors",
+        question: "You should never wear a hat indoors.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -420,7 +444,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Gamers rise up",
+        question: "Gamers rise up.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -428,7 +452,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Despacito was over-rated",
+        question: "Despacito was over-rated.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -436,7 +460,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Mankey is the strongest monkey",
+        question: "Mankey is the strongest monkey.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -444,7 +468,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Ash's Pokemon career is filled with pity",
+        question: "Ash's Pokemon career was pitiful.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -452,7 +476,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Brock was misunderstood",
+        question: "Brock was misunderstood.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -460,7 +484,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Squirtle was objectively the best choice",
+        question: "Squirtle was objectively the best choice.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -468,7 +492,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "The \"Let's Go\" versions were a mistake",
+        question: "The \"Let's Go\" versions were a mistake.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -484,7 +508,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Jessie and James are the heart of the series",
+        question: "Jessie and James are the heart of the series.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -492,7 +516,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Generation 1:RBY was the best generation",
+        question: "Generation 1:RBY was the best generation.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -500,7 +524,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Generation 2:GSC was the best generation",
+        question: "Generation 2:GSC was the best generation.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -508,7 +532,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Eevee is a better mascot than Pikachu",
+        question: "Eevee is a better mascot than Pikachu.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -516,7 +540,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Team Rocket should've been a bigger part of the game series",
+        question: "Team Rocket should've been a bigger part of the game series.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -524,7 +548,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "10 years old is probably too young for a journey",
+        question: "10 years old is probably too young for a Pokemon journey",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -532,7 +556,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Ash's revival via poketears was strange",
+        question: "That one time Ash came back to life via tears was a bit much.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -540,7 +564,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Pikachu's vacation is the best short objectively",
+        question: "Pikachu's vacation is the best movie short.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -548,7 +572,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Generation 2 was a lazy update to generation 1",
+        question: "Generation 2 was only marginally better than generation 1.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -556,7 +580,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "The Team Rocket event at Goldenrod was tedious",
+        question: "The Team Rocket event at Goldenrod was tedious.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -564,7 +588,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "You would buy a Magikarp for $1000",
+        question: "You would buy a Magikarp for $1000.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -572,7 +596,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "An open world version of Pokemon works better than a linear path",
+        question: "An open world version of Pokemon works better than a linear one.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -580,7 +604,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Mewtwo was pretty cool",
+        question: "Mewtwo was pretty cool.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -588,7 +612,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Mimikyu is objectively the best Pokemon",
+        question: "Mimikyu is objectively the best Pokemon.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -596,7 +620,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Nuzlocke is the best format to play",
+        question: "Nuzlocke is the best format to play.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -604,7 +628,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "You feel comfortable leaving your starter at the Daycare",
+        question: "You feel comfortable leaving your starter at the Daycare.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -612,7 +636,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Mega-evolutions were a great addition to the series",
+        question: "Mega-evolutions were a great addition to the series.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -620,7 +644,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "placeholder",
+        question: "The Pokemon TCG is confusing.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -628,7 +652,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "You are willing to look after a Snorlax",
+        question: "You are willing to look after a Snorlax.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -636,7 +660,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Fire, water and grass are the best selection for starters",
+        question: "Fire, water and grass are the best selection for starters.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -644,13 +668,13 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Digimon was better",
+        question: "Digimon was better.",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
         answer4: "Disagree",
         answer5: "Strongly Disagree"
-    },
+    }
 ]
 
 
@@ -672,6 +696,7 @@ const questionGen = () => {
     questionAsked.innerHTML = mainQuestion[i].question;
 }
 
+
 ////DOM Declarations////
 
 //DOM Inputs//
@@ -682,6 +707,7 @@ const questionBox = document.getElementById('questionHolder');
 
 //DOM Pages//
 
+const mainLoader = document.querySelector('main');
 const frontpage = document.getElementById('mainpage');
 const mainContent = document.getElementById('questionpage');
 const resultPage = document.getElementById('resultpage');
@@ -695,6 +721,11 @@ const questionAsked = document.getElementById('asking');
 //DOM Buttons//
 
 const startButton = document.getElementById('startQ');
+const natureMod = document.getElementById('natureModal');
+const natureModBox = document.querySelector('.modalN');
+const natureClose = document.querySelector('.close');
+const abilityDivBox = document.querySelector('.ability_div');
+const resultpageh1 = document.getElementById('resulth1')
 
 const ans1 = document.getElementById('answer1');
 const ans2 = document.getElementById('answer2');
@@ -727,19 +758,10 @@ mainContent.addEventListener('click', (e)=>{
     questHead.innerHTML = `Question ${turn}`
 })
 
+natureMod.addEventListener('click',(e) =>{
+    natureModBox.style.display = 'block';
+})
 
-
-
-
-// ///skip///
-
-// const skipBut = document.getElementById('skip');
-
-// skipBut.addEventListener('click', () =>{
-//  pokeVal = 19;
-//  frontpage.style.display = 'none';
-//  resultPage.style.display = 'block';
-//  callResult();
-//  setTimeout(()=>{resultPageGen()}, 3000);
- 
-// })
+natureClose.addEventListener('click', () =>{
+    natureModBox.style.display = 'none'
+})
