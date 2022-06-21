@@ -943,6 +943,6 @@ abilityModalEnt.addEventListener('mouseout', () => {
 navAbout.addEventListener('click', () => {
     frontpage.style.display = 'none';
     mainContent.style.display = 'none';
-    // resultPage.style.display = 'none';
+    resultPage.style.display = 'none';
     aboutThisPage.style.display = 'block';
 })
