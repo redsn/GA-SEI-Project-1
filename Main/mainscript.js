@@ -17,7 +17,7 @@ const callResult = () => {
             return result.json()
         })
         .then(result =>{
-            console.log(result);
+            // console.log(result);
             result.abilities.forEach(element =>{
                 pokeValAbility.push(element);
             })
@@ -201,6 +201,7 @@ const endCheck = () => { // conditional check for endstate
             resultPageGen();
             natureStuff();
             resultPage.style.display = 'block';
+            navAbout.style.display = 'flex';
         }, 2000);
     }
     }
@@ -213,6 +214,7 @@ const resultPageGen = () => { //endpage generation
     let newAbility = document.createElement('p');
     let newAbility2 = document.createElement('p');
     let newAbility3 = document.createElement('p');
+    let abilityMark = document.createElement('h3');
 
     newPokeName = pokeValName[0];
     newPokeName = newPokeName[0].toUpperCase() + newPokeName.substring(1);
@@ -221,8 +223,16 @@ const resultPageGen = () => { //endpage generation
     newImage.src = `${pokeValSprites}`;
     newAbility.classList.add("ability1");
     newAbility.innerText = pokeValAbility[0].ability.name;
+
+    if (pokeValAbility[1] === undefined){
+        abilityMark.innerText = 'Ability:';
+    } else if(pokeValAbility[1] !== undefined){
+        abilityMark.innerText = 'Abilities:'
+    }
+
     resultPage.append(newName);
     resultPage.append(newImage);
+    resultPage.append(abilityMark);
     resultPage.append(newAbility);
 
     if(pokeValAbility[1] === undefined){
@@ -507,7 +517,7 @@ const mainQuestion =
         answer5: "Strongly Disagree"
     },
     {
-        question: "Gamefreak hasn't made anything worthwhile in years",
+        question: "Gamefreak hasn't made anything interesting in years",
         answer1: "Strongly Agree",
         answer2: "Agree",
         answer3: "Neutral",
@@ -681,6 +691,150 @@ const mainQuestion =
         answer3: "Neutral",
         answer4: "Disagree",
         answer5: "Strongly Disagree"
+    },
+    {
+         question: "Pikachu was cuter in RBY.",
+         answer1: "Strongly Agree",
+         answer2: "Agree",
+         answer3: "Neutral",
+         answer4: "Disagree",
+         answer5: "Strongly Disagree"
+    },
+    {
+        question: "Uknowns were a worthless addition to the series.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Twitch plays Pokemon was a successful event.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "The Pokemon movies are worthwhile.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "The Pokemon Trading Card Game is interesting.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Eevees are just dogs that can transform.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Gary was here, Ash is a loser.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Misty had an unhealthy obsession with Ash.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Starmie is terrifying.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Ho-oh was way better than Lugia.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Pokemon speach via sounds is better than saying their own name.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Weird Al's Twinkies sandwich is disgusting.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Misty was the best supporting trainer.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Lately Pokemon designs have been mediocre.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Feebas are often difficult to catch for like no reason.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Blissey is terrifying in competitive.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Shuckle is worthless.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
+    },
+    {
+        question: "Pokemon is popular.",
+        answer1: "Strongly Agree",
+        answer2: "Agree",
+        answer3: "Neutral",
+        answer4: "Disagree",
+        answer5: "Strongly Disagree"
     }
 ]
 
@@ -719,20 +873,24 @@ const frontpage = document.getElementById('mainpage');
 const mainContent = document.getElementById('questionpage');
 const resultPage = document.getElementById('resultpage');
 const questHead = document.getElementById('questionHead');
-const supplementPage = document.getElementById('supplement');
+const aboutThisPage = document.getElementById('aboutThis');
 
 //DOM Text//
 
 const questionAsked = document.getElementById('asking');
 
-//DOM Buttons//
+//DOM Interactables//
+
+const abilityModalEnt = document.querySelector('.abilityEnt');
 
 const startButton = document.getElementById('startQ');
 const natureMod = document.getElementById('natureModal');
 const natureModBox = document.querySelector('.modalN');
 const natureClose = document.querySelector('.close');
 const abilityDivBox = document.querySelector('.ability_div');
-const resultpageh1 = document.getElementById('resulth1')
+const resultpageh1 = document.getElementById('resulth1');
+const abilityModalBox = document.querySelector('.modalA');
+const navAbout = document.getElementById('aboutPage')
 
 const ans1 = document.getElementById('answer1');
 const ans2 = document.getElementById('answer2');
@@ -747,6 +905,7 @@ startButton.addEventListener('click', () => {
     mainPageSum();
     listGen();
     questionGen();
+    navAbout.style.display = 'none';
     questHead.innerHTML = `Question ${turn}`
     frontpage.style.display = 'none';
     mainContent.style.display = 'block';
@@ -771,4 +930,19 @@ natureMod.addEventListener('click',(e) =>{
 
 natureClose.addEventListener('click', () =>{
     natureModBox.style.display = 'none'
+})
+
+abilityModalEnt.addEventListener('mouseover', () => {
+    abilityModalBox.style.display = 'block'
+})
+
+abilityModalEnt.addEventListener('mouseout', () => {
+    abilityModalBox.style.display = 'none'
+})
+
+navAbout.addEventListener('click', () => {
+    frontpage.style.display = 'none';
+    mainContent.style.display = 'none';
+    // resultPage.style.display = 'none';
+    aboutThisPage.style.display = 'block';
 })
