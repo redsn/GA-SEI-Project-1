@@ -120,7 +120,7 @@ main .page{
     border: 1px solid black;
     box-shadow: 4px 4px rgb(72, 72, 72);
     padding: 10px 15px;
-    border-top: 10px var(--main-bg-third) solid;
+    border-top: 10px var(--main-bg-secondary) solid;
 }
 
 footer{
@@ -201,11 +201,17 @@ footer{
 }
 
 #resultpage img{
-    width: 20%
+    width: 20%;
+    box-shadow: 7px 7px rgb(94, 94, 94), 
+                -7px -7px rgb(94,94,94),
+                7px -7px rgb(94, 94, 94),
+                -7px 7px rgb(94, 94, 94);
+    margin-bottom: 1%;
 }
 
 #resultpage h1{
     font-family: 'League Gothic', sans-serif;
+    color: var(--main-bg-primary)
 }
 
 #questionpage h2{
@@ -254,7 +260,7 @@ footer{
 }
 
 .cssMessage{
-    margin-top: 10%;
+    margin-top: 3%;
     font-weight: 700;
     font-size: larger;
     font-family: cursive;
@@ -262,16 +268,16 @@ footer{
 
 .cssFiller{
     font-weight: 600;
-    margin-top: 10%;
+    margin-top: 3%;
     margin-bottom: 20px;
 }
 
 .resultPageh1{
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .pokeName{
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .loadingStyle{
