@@ -11,8 +11,6 @@ A browser-based personality quiz built using HTML, CSS and Javascript. Uses an A
 
 - As a user, I want to know more about the pokemon I am.
 
-- As a user, I want to see pictures as I answer questions.
-
 - As a user, I want to see my personaility as a poke nature.
 
 
@@ -21,6 +19,7 @@ A browser-based personality quiz built using HTML, CSS and Javascript. Uses an A
 - HTML 5
 - CSS3
 - Javascript
+- Google Fonts
 
 # Screenshots
 
@@ -31,7 +30,7 @@ A browser-based personality quiz built using HTML, CSS and Javascript. Uses an A
 
 # Getting Started
 
-- npm-i [THIS IS A LINK](http://google.com) placeholdertext
+- npm-i [Click Here](https://pokenat.netlify.app/) placeholdertext
 
 # Future Enhancements
 
